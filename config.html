@@ -88,9 +88,22 @@
             h1 {
                 font-size: 2em;
             }
+            label {
+            display: flex;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: black;
+        }
             form {
-                padding: 30px 20px;
-            }
+            background: #fff;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            backdrop-filter: 0;
+            border: none;
+            max-width: 90%;
+            width: 100%;
+        }
         }
     </style>
 </head>
@@ -107,6 +120,7 @@
         <input type="time" id="time" name="time" required>
 
         <button type="submit">Lancer le compte à rebours</button>
+        <button type="button" id="backButton" style="margin-top: 15px; background: rgba(255, 255, 255, 0.2); color: black;">Retour</button>
     </form>
 
     <script>
@@ -119,6 +133,10 @@
                 const url = `index.html?text=${encodeURIComponent(text)}&date=${date}&time=${time}`;
                 window.location.href = url;
             }
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'index.html';
         });
     </script>
 </body>
