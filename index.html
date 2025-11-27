@@ -71,6 +71,7 @@
         const timeParam = urlParams.get('time');
 
         // Définir le texte du bouton
+        document.querySelector('h1').innerHTML = textParam || 'heure de cloture de la liste';
 
         let targetDate;
         if (dateParam && timeParam) {
