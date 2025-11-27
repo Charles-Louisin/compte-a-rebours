@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            cursor: pointer;
+            color: #000000;
+            text-transform: capitalize;
+        }
+
+        h1:hover {
+            color: #0056b3;
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            body {
+            padding: 0 15px 0 15px;
+        }
+            h1 {
+                font-size: 1.8em;
+            }
+            #countdown {
+                font-size: 2em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="font-size: 3em; color: red; margin-bottom: 10px;">⚠️</div>
+    <h1>heure de cloture de la liste</h1>
+    <div id="countdown"></div>
+
+    <script>
+        // Lire les paramètres URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const textParam = urlParams.get('text');
+        const dateParam = urlParams.get('date');
+        const timeParam = urlParams.get('time');
+
+        // Définir le texte du titre
+        document.querySelector('h1').innerHTML = textParam || 'heure de cloture de la liste';
+
+        let targetDate;
+        if (dateParam && timeParam) {
+            targetDate = new Date(`${dateParam}T${timeParam}:00`);
+        } else {
+            // Date par défaut si aucun paramètre
+            targetDate = new Date('2025-11-27T22:00:00');
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeDifference = targetDate - now;
+
+            if (timeDifference <= 0) {
+                document.getElementById('countdown').innerHTML = 'Le temps est écoulé !';
+                return;
+            }
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            let countdownText = '';
+            if (days > 0) {
+                countdownText += `${days} jours, `;
+            }
+            if (hours > 0 || days > 0) {
+                countdownText += `${hours}h `;
+            }
+            countdownText += `${minutes} min ${seconds} sec`;
+
+            document.getElementById('countdown').innerHTML = countdownText;
+        }
+
+        // Mettre à jour le compte à rebours toutes les secondes
+        setInterval(updateCountdown, 1000);
+
+        // Appel initial
+        updateCountdown();
+
+        // Ajouter un événement de clic au titre pour aller à config.html
+        document.querySelector('h1').addEventListener('click', function() {
+            window.location.href = 'config.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration du Compte à rebours</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #0000;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2f2e2edb;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #88888833;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0 10px 0 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Configuration du Compte à rebours</h1>
+    <form id="configForm">
+        <label for="text">Texte à afficher :</label>
+        <input type="text" id="text" name="text" placeholder="heure de cloture de la liste" value="heure de cloture de la liste">
+
+        <label for="date">Date cible :</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Heure cible :</label>
+        <input type="time" id="time" name="time" required>
+
+        <button type="submit">Lancer le compte à rebours</button>
+    </form>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const text = document.getElementById('text').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            if (date && time) {
+                const url = `index.html?text=${encodeURIComponent(text)}&date=${date}&time=${time}`;
+                window.location.href = url;
+            }
+        });
+    </script>
+</body>
+</html>
