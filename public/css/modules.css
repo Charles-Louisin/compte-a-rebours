@@ -1,0 +1,19 @@
+/* Additional styles for modules */
+
+.task-item {
+    display: flex;
+    align-items: center;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 1rem;
+}
+
+.task-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-item.completed span {
+    color: #333;
+}
