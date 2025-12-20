@@ -13,6 +13,10 @@ const taskSchema = new mongoose.Schema({
   checked: {
     type: Boolean,
     default: false
+  },
+  priority: {
+    type: Number,
+    default: 0
   }
 });
 
