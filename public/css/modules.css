@@ -21,7 +21,7 @@
 }
 
 .task-header {
-    background-color: #2e8b57;
+    /* background-color: #2e8b57; */
     display: flex;
     align-items: center;
     justify-content: center;
